@@ -16,12 +16,14 @@ int dfs(int u)
     {
         res = max(res, dfs(v));
     }
+    
     return res + 1;
 }
 
 int bfs()
 {
     queue<int> q;
+
     q.push(1);
     int res = 0;
     while(q.size())
