@@ -9,3 +9,4 @@
 *.pdb
 *.ilk
 *.tmp
+.DS_Store
