@@ -5,10 +5,11 @@ using namespace std;
 
 const int N = 110;
 int n, u, v;
-vector<int> edges[N];
-int fa[N];
-int dist[N];
+vector<int> edges[N]; //单向边
+int fa[N]; //存父节点
+int dist[N]; //路径距离
 
+//递归计算深度
 int dfs(int u)
 {
     int res = 0;
@@ -20,21 +21,27 @@ int dfs(int u)
     return res + 1;
 }
 
+//递归计算宽度（队列）
 int bfs()
 {
     queue<int> q;
 
     q.push(1);
     int res = 0;
+
+    //如果队列中有数据，循环处理
     while(q.size())
     {
-        int sz = q.size();
+        int sz = q.size(); //找到当前队列长度（即数据的数量）
         res = max(res, sz);
 
+        //处理队列里每个数据
         while(sz --)
         {
-            int u = q.front();
-            q.pop();
+            int u = q.front(); //临时变量u为q的头节点
+            q.pop(); //弹出头节点
+
+            //便利当前队列每个数据的子节点
             for(auto v : edges[u])
             {
                 q.push(v);
@@ -47,6 +54,8 @@ int bfs()
 int main()
 {
     cin >> n;
+
+    //仅存单向边，父节点单独存储
     for(int i = 0; i < n - 1; i ++)
     {
         cin >> u >> v;
@@ -57,6 +66,7 @@ int main()
     cout << dfs(1) << endl;
     cout << bfs() << endl;
 
+    //找到最近的公共祖先
     int x, y;
     cin >> x >> y;
     while(x != 1)
