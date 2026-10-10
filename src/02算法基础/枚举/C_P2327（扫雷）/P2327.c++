@@ -5,7 +5,7 @@ using namespace std;
 const int N = 1e4 + 10;
 int n, a[N], b[N];
 
-//b[i] = a[i - 1] + a[i] + a[i - 1]，考虑a[1]可能的两种情况，若能把格子占满，则方案通过，re++
+//b[i] = a[i - 1] + a[i] + a[i - 1]，考虑a[1]可能的两种情况，若能a[n + 1] = 0，则方案通过，re++
 int check1()
 {
     a[1] = 0;
@@ -15,7 +15,7 @@ int check1()
         if(a[i] < 0 || a[i] > 1) return 0;
     }
 
-    if(a[n + 1] == 0) return 1;
+    if(a[n + 1] == 0) return 1; //满足方案需存在虚假的地雷
     else return 0;
 }
 int check2()
