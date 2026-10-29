@@ -3,7 +3,9 @@
 ## 文件操作
 
 <details>
-<summary>📂 Linux 文件操作命令（点击展开）</summary>### 1.`cp` （copy，复制）
+<summary>📂 文件操作命令（点击展开）</summary>
+
+### 1.`cp` （copy，复制）
 
 **语法：`cp 源文件 目标位置`**
 
@@ -46,7 +48,9 @@
 ### 5. `cp -s` 等价 `ln -s` → 符号链接（软链接，symbolic link）
 
 `-s = --symbolic-link`，**不复制文件内容，只创建快捷方式**
+
 `cp -s a.txt link_a`，**和 ln -s a.txt link_a 效果一样**
+
 ✅ 软链接特点（Windows 快捷方式）
 
 - 它本身是一个单独小文件，里面存**源文件的路径**
@@ -60,7 +64,9 @@
 ### 6. `cp -l` 等价 `ln` → 硬链接（hard link）
 
 `-l = --link`，创建硬链接，不复制文件内容
+
 `cp -l a.txt hard_a`
+
 ✅ 硬链接底层（inode 机制）：
 硬链接和原文件**共用同一个 inode、同一块磁盘数据**，本质是**同一个文件的多个文件名**
 
