@@ -229,7 +229,7 @@
 ## 文本处理四大神器 + 正则表达式
 
 <details>
-<summary>📂 文本处理 sed awk grep tr（点击展开）</summary>
+<summary>📂 查看文本处理sed、awk、grep、tr命令（点击展开）</summary>
 
 ### 1. `grep`（文本行搜索过滤）
 **语法：`grep [选项] "匹配模式" 文件名`**
