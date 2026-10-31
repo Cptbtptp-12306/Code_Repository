@@ -77,7 +77,9 @@
 
 </details>
 
+
 ---
+
 
 ## 查看文本文件
 
@@ -143,10 +145,14 @@
 
 </details>
 
+
 ---
 
+
+## 管道、重定向与locate
+
 <details>
-<summary>📂 管道、重定向、locate 命令（点击展开）</summary>
+<summary>📂 查看管道、重定向与locate 命令（点击展开）</summary>
 
 ### 1. 管道操作符 `|`
 
