@@ -16,6 +16,7 @@ int main()
         cin >> a[i];
     }
 
+    //求区间可以直接用长度比较，当len最小时，修改res同时让begin = left
     int left = 1, right = 1;
     int res = n, begin = 1; //res默认为整个数组长度，begin初始等于left
 
