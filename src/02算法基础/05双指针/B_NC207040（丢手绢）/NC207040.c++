@@ -33,7 +33,7 @@ int main()
         }
 
         //当前窗口k为小于sum / 2的合法程度，使用新k更新res
-        res = max(res, k); //与上一个max形成判断优劣弧
+        res = max(res, k); //与上一个max共同形成判断优劣弧
         right ++;
     }
 
