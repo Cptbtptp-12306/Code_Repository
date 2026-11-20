@@ -295,4 +295,218 @@ int main()
 
 </details>
 
+---
+
+<details>
+<summary>优先级队列（点击展开）</summary>
+
+## 5. 优先级队列
+
+### 5.1 优先级队列的概念
+
+普通的队列是一种先进先出的数据结构，即元素插入在队尾，而元素删除在队头。
+
+而在优先级队列中，元素被赋予优先级，当插入元素时，同样是在队尾，但是会根据优先级进行位置调整，优先级越高，调整后的位置越靠近队头；同样的，删除元素也是根据优先级进行，优先级最高的元素（队头）最先被删除。
+
+其实可以认为，优先级队列就是堆实现的一个数据结构。
+
+priority_queue 就是 C++ 提供的，已经实现好的优先级队列，底层实现就是一个堆结构。在算法竞赛中，如果是需要使用堆的题目，一般就直接用现成的 priority_queue，很少手写一个堆，因为省事~
+
+### 5.2 创建 priority_queue - 初阶
+
+优先级队列的创建结果有很多种，因为需要根据实际需求，可能会创建出来各种各样的堆：
+
+1. 简单内置类型的大根堆或小根堆：比如存储 int 类型的大根堆或小根堆；
+2. 存储字符串的大根堆或小根堆；
+3. 存储自定义类型的大根堆或小根堆：比如堆里面的数据是一个结构体。
+
+关于每一种创建结果，都需要有与之对应的写法。在初阶阶段，先用简单的 int 类型建堆，重点学习 priority_queue 的用法。
+
+注意：priority_queue 包含在 queue 这个头文件中。
+
+```
+#include <iostream>
+#include <vector>
+#include <queue> // 优先级队列的头文件在 queue 里面
+using namespace std;
+
+// 优先级队列的使用
+void test1()
+{
+    int a[10] = {1, 41, 23, 10, 11, 2, -1, 99, 14, 0};
+    priority_queue<int> heap; // 默认写法，是一个大根堆
+}
+```
+
+### 5.3 size / empty
+
+1. size：返回元素的个数。
+2. empty：返回优先级队列是否为空。
+
+时间复杂度：(O(1))
+
+### 5.4 push
+
+- 往优先级队列里面添加一个元素。
+时间复杂度：因为底层是一个堆结构，所以时间复杂度为 O(log N)。
+
+### 5.5 pop
+
+- 删除优先级最高的元素。
+时间复杂度：因为底层是一个堆结构，所以时间复杂度为 O(log N)。
+
+### 5.6 top
+
+- 获取优先级最高的元素。
+时间复杂度：$(O(1))$
+
+### 5.7 所有测试代码
+
+```
+#include <iostream>
+#include <vector>
+#include <queue> // 优先级队列的头文件在 queue 里面
+using namespace std;
+
+// 优先级队列的使用
+void test()
+{
+    int a[10] = {1, 41, 23, 10, 11, 2, -1, 99, 14, 0};
+    priority_queue<int> heap; // 默认写法，是一个大根堆
+
+    for(auto x : a)
+    {
+        heap.push(x); // 插入元素
+    }
+    while(heap.size())
+    {
+        cout << heap.top() << " "; // 获取堆顶元素的值
+        heap.pop(); // 删除元素
+    }
+}
+
+int main()
+{
+    test();
+    return 0;
+}
+```
+
+### 5.8 创建 priority_queue - 进阶
+
+#### 5.8.1 内置类型
+
+内置类型就是 C++ 提供的数据类型，比如 int、double、long long 等。以 int 类型为例，分别创建大根堆和小根堆。
+
+```
+#include <iostream>
+#include <vector>
+#include <queue> // 优先级队列的头文件在 queue 里面
+using namespace std;
+
+// 内置类型
+void test()
+{
+    int a[10] = {1, 41, 23, 10, 11, 2, -1, 99, 14, 0};
+    // 大根堆
+    priority_queue<int> heap1; // 默认就是大根堆
+    // priority_queue<数据类型，存数据的结构，数据之间的比较方式>
+    priority_queue<int, vector<int>, less<int>> heap2; // 也是大根堆
+
+    // 小根堆
+    priority_queue<int, vector<int>, greater<int>> heap3; // 小根堆
+
+    // 测试
+    for(auto x : a)
+    {
+        heap1.push(x);
+        heap2.push(x);
+        heap3.push(x);
+    }
+
+    while(heap1.size())
+    {
+        cout << heap1.top() << " "; // 获取堆顶元素的值
+        heap1.pop(); // 删除元素
+    }
+    cout << endl;
+
+    while(heap2.size())
+    {
+        cout << heap2.top() << " "; // 获取堆顶元素的值
+        heap2.pop(); // 删除元素
+    }
+    cout << endl;
+
+    while(heap3.size())
+    {
+        cout << heap3.top() << " "; // 获取堆顶元素的值
+        heap3.pop(); // 删除元素
+    }
+    cout << endl;
+}
+
+int main()
+{
+    test();
+    return 0;
+}
+```
+
+#### 5.8.2 结构体类型
+
+当优先级队列里面存的是结构体类型时，需要在结构体中重载 `<` 比较运算符，从而创建出大根堆或者小根堆。
+
+注：这里的主要目的是把优先级队列创建出来，因此只用掌握写法即可。关于其中背后的原理，这里就不再赘述，因为涉及比较复杂的 C++ 语法知识。在这里，学习的侧重点就是模仿。
+
+```
+#include <iostream>
+#include <vector>
+#include <queue> // 优先级队列的头文件在 queue 里面
+using namespace std;
+
+struct node
+{
+    int a, b, c;
+
+    // 以 b 为基准，定义大根堆
+    // bool operator < (const node& x) const
+    // {
+    //     return b < x.b;
+    // }
+
+    // 以 b 为基准，定义小根堆
+    bool operator < (const node& x) const
+    {
+        return b > x.b;
+    }
+};
+
+void test()
+{
+    priority_queue<node> heap;
+
+    for(int i = 1; i <= 10; i++)
+    {
+        heap.push({i, i + 1, i + 2});
+    }
+
+    while(heap.size())
+    {
+        auto [a, b, c] = heap.top();
+        heap.pop();
+        cout << a << " " << b << " " << c << endl;
+    }
+}
+
+int main()
+{
+    test();
+    return 0;
+}
+```
+
+</details>
+
+
 
